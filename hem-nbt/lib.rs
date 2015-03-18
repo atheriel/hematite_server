@@ -325,7 +325,7 @@ impl fmt::Display for NbtValue {
                 }
             },
             NbtValue::Compound(ref v)  => {
-                write!(f, "TAG_Compound(\"\"): {} entry(ies)\n{{\n", v.len());
+                write!(f, "{} entry(ies)\n{{\n", v.len());
                 for (name, tag) in v {
                     write!(f, "{}(\"{}\"): {}\n", tag.to_string(), name, tag);
                 }
@@ -467,7 +467,7 @@ impl<'a> Index<&'a str> for NbtBlob {
 
 impl fmt::Display for NbtBlob {
     fn fmt(&self, f: &mut fmt::Formatter) -> Result<(), fmt::Error> {
-        write!(f, "{}", self.content)
+        write!(f, "TAG_Compound(\"{}\"): {}", self.title, self.content)
     }
 }
 
